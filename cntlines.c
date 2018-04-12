@@ -3,6 +3,7 @@
 #include <dirent.h>
 #include <string.h>
 #include <stdlib.h>
+#include <time.h>
 #include <sys/stat.h>
 
 #define MAX 256
@@ -70,9 +71,44 @@ void findAllDirs(const char *path)
 }
 int main()
 {
+   FILE * fp;
+   time_t rawtime;
+   struct tm*info;
+
+   fp = fopen("lines.log", "a");
    char path[MAX] = ".";
+
+
    printf("counting ....\n");
    findAllDirs(path);
    printf("You have write %ld lines code from now.\n", total);
+   
+   time(&rawtime);
+   info = localtime(&rawtime);
+   if(NULL==fp){
+      printf("Can't open file\n");
+      exit(-1);
+   }
+   fprintf(fp, "%s %ld %s %s", "You have write ",total, " lines code from now.\n", asctime(info));
+   fclose(fp);
    return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
