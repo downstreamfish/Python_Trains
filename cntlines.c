@@ -9,7 +9,6 @@
 #define MAX 256
 
 long total;
-
 int countLines(const char *filename);
 int isCode(const char *filename);
 void findAllDirs(const char *path);
@@ -89,7 +88,7 @@ int main()
       printf("Can't open file\n");
       exit(-1);
    }
-   fprintf(fp, "%s %ld %s %s", "You have write ",total, " lines code from now.\n", asctime(info));
+   fprintf(fp, "%s %ld %s %s", "\n You have write ",total, " lines code from now.\n", asctime(info));
    fclose(fp);
    return 0;
 }
