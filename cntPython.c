@@ -36,7 +36,7 @@ int isCode(const char *filename)
 {
    int length;
    length = strlen(filename);
-   if(!strcmp(filename + (length - 2), ".c")){
+   if(!strcmp(filename + (length - 3), ".py")){
       return 1;
    }else{
       return 0;
@@ -72,9 +72,9 @@ int main()
 {
    FILE * fp;
    time_t rawtime;
-   struct tm*info;
+   struct tm*st;
 
-   fp = fopen("lines.log", "a");
+   fp = fopen("pythonlines.log", "a");
    char path[MAX] = ".";
 
 
@@ -83,12 +83,12 @@ int main()
    printf("You have write %ld lines code from now.\n", total);
    
    time(&rawtime);
-   info = localtime(&rawtime);
+   st = localtime(&rawtime);
    if(NULL==fp){
       printf("Can't open file\n");
       exit(-1);
    }
-   fprintf(fp, "%s %ld %s %s", "\n You have write ",total, " lines code from now.\n", asctime(info));
+   fprintf(fp, "%s %ld %s %d-%d-%d %d:%2d:%2d\n", "\n You have write ",total, " lines code from now.\n", 1900+st->tm_year, 1+st->tm_mon,st->tm_mday,st->tm_hour,st->tm_min,st->tm_sec);
    fclose(fp);
    return 0;
 }

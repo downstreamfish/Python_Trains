@@ -1,0 +1,6 @@
+This is a JPEG file (45369 bytes long)
+
+	Hello Python
+	python is goode
+
+	life is short, I us python
